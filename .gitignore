@@ -1,0 +1,12 @@
+# Build output and binary files
+*.exe
+*.o
+*.obj
+*.out
+Debug/
+Release/
+
+# Eclipse / IDE project settings
+.settings/
+.cproject
+.project
