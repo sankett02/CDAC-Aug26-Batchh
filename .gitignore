@@ -3,6 +3,7 @@
 *.o
 *.obj
 *.out
+*.class
 Debug/
 Release/
 
