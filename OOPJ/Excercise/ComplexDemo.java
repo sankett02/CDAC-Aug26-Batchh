@@ -1,3 +1,5 @@
+// Question 4 (Set 2): Complex Numbers
+
 import java.util.Scanner;
 
 class Complex {
@@ -18,7 +20,8 @@ class Complex {
     }
 
     public Complex multiply(Complex c) {
-        return new Complex((real * c.real) - (imag * c.imag), (real * c.imag) + (imag * c.real));
+        return new Complex((this.real * c.real) - (this.imag * c.imag),
+                           (this.real * c.imag) + (this.imag * c.real));
     }
 
     public void display() {
@@ -30,19 +33,19 @@ public class ComplexDemo {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Enter first complex number (real & imaginary): ");
+        System.out.print("Enter real and imaginary parts of first complex number: ");
         Complex c1 = new Complex(sc.nextDouble(), sc.nextDouble());
 
-        System.out.print("Enter second complex number (real & imaginary): ");
+        System.out.print("Enter real and imaginary parts of second complex number: ");
         Complex c2 = new Complex(sc.nextDouble(), sc.nextDouble());
 
-        System.out.print("\nSum: "); 
+        System.out.print("\nSum: ");
         c1.add(c2).display();
 
-        System.out.print("Difference: "); 
+        System.out.print("Difference: ");
         c1.subtract(c2).display();
 
-        System.out.print("Product: "); 
+        System.out.print("Product: ");
         c1.multiply(c2).display();
 
         sc.close();

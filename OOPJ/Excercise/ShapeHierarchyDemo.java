@@ -1,3 +1,5 @@
+// Question 4: Shape Class Hierarchy
+
 public class ShapeHierarchyDemo {
 
     static class Shape {
@@ -27,13 +29,10 @@ public class ShapeHierarchyDemo {
     public static void main(String[] args) {
         Square square = new Square();
 
-        // Call method of 'Shape' class by object of 'Square' class
+        System.out.println("1 - Calling method of Shape class by Square object:");
         square.printShape();
 
-        // Call method of 'Rectangle' class by object of 'Square' class
+        System.out.println("\n2 - Calling method of Rectangle class by Square object:");
         square.printRectangle();
-
-        // Call method of 'Square' class
-        square.printSquare();
     }
 }

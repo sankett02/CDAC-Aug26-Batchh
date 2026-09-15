@@ -1,3 +1,5 @@
+// Question 1: Parent and Child Class Inheritance
+
 class Parent {
     public void printParent() {
         System.out.println("This is parent class");
@@ -15,13 +17,13 @@ public class ParentChildDemo {
         Parent parentObj = new Parent();
         Child childObj = new Child();
 
-        // 1 - Method of parent class by object of parent class
+        System.out.println("1 - Calling parent method by parent object:");
         parentObj.printParent();
 
-        // 2 - Method of child class by object of child class
+        System.out.println("\n2 - Calling child method by child object:");
         childObj.printChild();
 
-        // 3 - Method of parent class by object of child class
+        System.out.println("\n3 - Calling parent method by child object:");
         childObj.printParent();
     }
 }

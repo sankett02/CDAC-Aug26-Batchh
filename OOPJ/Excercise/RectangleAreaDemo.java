@@ -1,3 +1,5 @@
+// Question 3 (Set 2): Rectangle Area Calculation
+
 public class RectangleAreaDemo {
 
     static class Rectangle {

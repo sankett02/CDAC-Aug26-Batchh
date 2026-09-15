@@ -1,3 +1,5 @@
+// Question 6 (Set 2): Employee Salary Adjustments
+
 import java.util.Scanner;
 
 public class EmployeeSalaryDemo {
@@ -17,7 +19,7 @@ public class EmployeeSalaryDemo {
             if (salary < 500) salary += 10;
         }
 
-        // 3 - 'addWork()' adds $5 to salary if work hours > 6
+        // 3 - 'addWork()' adds $5 to salary if work hours per day > 6
         public void addWork() {
             if (hoursPerDay > 6) salary += 5;
         }

@@ -1,3 +1,5 @@
+// Question 1 (Set 2): Student Class
+
 class Student {
     String name;
     int roll_no;
@@ -14,26 +16,29 @@ class Student {
     }
 
     public void printDetails() {
-        System.out.println("Name: " + name + ", Roll No: " + roll_no);
-        if (phone_no != null) System.out.println("Phone: " + phone_no + ", Address: " + address);
+        System.out.println("Name: " + name);
+        System.out.println("Roll No: " + roll_no);
+        if (phone_no != null) System.out.println("Phone No: " + phone_no);
+        if (address != null) System.out.println("Address: " + address);
     }
 }
 
 public class StudentDemo {
     public static void main(String[] args) {
-        // Part (a): Assign roll_no=2 and name="John"
+        System.out.println("=== Part (a) ===");
         Student s1 = new Student();
         s1.name = "John";
         s1.roll_no = 2;
-        System.out.println("--- Student 1 ---");
         s1.printDetails();
 
-        // Part (b): Assign and print details for Sam and John
-        System.out.println("\n--- Students Sam & John ---");
-        Student sam = new Student("Sam", 1, "9876543210", "64C Wall Street");
-        Student john = new Student("John", 2, "9123456780", "26B Wall Street");
+        System.out.println("\n=== Part (b) ===");
+        Student sam = new Student("Sam", 1, "9876543210", "64C WallsStreat");
+        Student john = new Student("John", 2, "9123456780", "26B WallsStreat");
 
+        System.out.println("--- Sam's Details ---");
         sam.printDetails();
+
+        System.out.println("\n--- John's Details ---");
         john.printDetails();
     }
 }

@@ -1,3 +1,5 @@
+// Question 2: Member and PrimeMembers Class Hierarchy
+
 import java.util.Scanner;
 
 class Member {
@@ -15,14 +17,19 @@ class Member {
         this.salary = salary;
     }
 
+    // Accessors and Mutators
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
+
     public int getAge() { return age; }
     public void setAge(int age) { this.age = age; }
+
     public String getPhoneNumber() { return phoneNumber; }
     public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
+
     public String getAddress() { return address; }
     public void setAddress(String address) { this.address = address; }
+
     public double getSalary() { return salary; }
     public void setSalary(double salary) { this.salary = salary; }
 
@@ -33,7 +40,7 @@ class Member {
     public void display() {
         System.out.println("Name: " + name);
         System.out.println("Age: " + age);
-        System.out.println("Phone: " + phoneNumber);
+        System.out.println("Phone Number: " + phoneNumber);
         System.out.println("Address: " + address);
         printSalary();
     }
@@ -52,20 +59,22 @@ class PrimeMembers extends Member {
         this.isActive = isActive;
     }
 
+    // Accessors and Mutators
     public int getJoiningYear() { return joiningYear; }
     public void setJoiningYear(int joiningYear) { this.joiningYear = joiningYear; }
+
     public double getJoiningFees() { return joiningFees; }
     public void setJoiningFees(double joiningFees) { this.joiningFees = joiningFees; }
+
     public boolean isActive() { return isActive; }
     public void setActive(boolean active) { isActive = active; }
 
     @Override
     public void display() {
-        System.out.println("--- Prime Member Details ---");
         super.display();
         System.out.println("Joining Year: " + joiningYear);
         System.out.println("Joining Fees: $" + joiningFees);
-        System.out.println("Active: " + isActive);
+        System.out.println("Is Active: " + isActive);
     }
 }
 
@@ -73,29 +82,42 @@ public class MemberDemo {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("=== Member Input ===");
-        System.out.print("Name: "); String name = sc.nextLine();
-        System.out.print("Age: "); int age = Integer.parseInt(sc.nextLine());
-        System.out.print("Phone: "); String phone = sc.nextLine();
-        System.out.print("Address: "); String address = sc.nextLine();
-        System.out.print("Salary: "); double salary = Double.parseDouble(sc.nextLine());
+        System.out.println("=== Enter Details for Member ===");
+        System.out.print("Name: ");
+        String name = sc.nextLine();
+        System.out.print("Age: ");
+        int age = Integer.parseInt(sc.nextLine());
+        System.out.print("Phone Number: ");
+        String phone = sc.nextLine();
+        System.out.print("Address: ");
+        String address = sc.nextLine();
+        System.out.print("Salary: ");
+        double salary = Double.parseDouble(sc.nextLine());
 
         Member member = new Member(name, age, phone, address, salary);
-        System.out.println("\n--- Member Details ---");
+        System.out.println("\n--- Displaying Member Details ---");
         member.display();
 
-        System.out.println("\n=== Prime Member Input ===");
-        System.out.print("Name: "); String pName = sc.nextLine();
-        System.out.print("Age: "); int pAge = Integer.parseInt(sc.nextLine());
-        System.out.print("Phone: "); String pPhone = sc.nextLine();
-        System.out.print("Address: "); String pAddress = sc.nextLine();
-        System.out.print("Salary: "); double pSalary = Double.parseDouble(sc.nextLine());
-        System.out.print("Joining Year: "); int jYear = Integer.parseInt(sc.nextLine());
-        System.out.print("Joining Fees: "); double jFees = Double.parseDouble(sc.nextLine());
-        System.out.print("Is Active (true/false): "); boolean active = Boolean.parseBoolean(sc.nextLine());
+        System.out.println("\n=== Enter Details for Prime Member ===");
+        System.out.print("Name: ");
+        String pName = sc.nextLine();
+        System.out.print("Age: ");
+        int pAge = Integer.parseInt(sc.nextLine());
+        System.out.print("Phone Number: ");
+        String pPhone = sc.nextLine();
+        System.out.print("Address: ");
+        String pAddress = sc.nextLine();
+        System.out.print("Salary: ");
+        double pSalary = Double.parseDouble(sc.nextLine());
+        System.out.print("Joining Year: ");
+        int jYear = Integer.parseInt(sc.nextLine());
+        System.out.print("Joining Fees: ");
+        double jFees = Double.parseDouble(sc.nextLine());
+        System.out.print("Is Active (true/false): ");
+        boolean active = Boolean.parseBoolean(sc.nextLine());
 
         PrimeMembers prime = new PrimeMembers(pName, pAge, pPhone, pAddress, pSalary, jYear, jFees, active);
-        System.out.println();
+        System.out.println("\n--- Displaying Prime Member Details ---");
         prime.display();
 
         sc.close();

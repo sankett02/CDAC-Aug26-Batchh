@@ -1,5 +1,9 @@
+// Question 2 (Set 2): Triangle Class
+
 class Triangle {
-    private double side1, side2, side3;
+    private double side1;
+    private double side2;
+    private double side3;
 
     public Triangle(double side1, double side2, double side3) {
         this.side1 = side1;
@@ -20,7 +24,7 @@ class Triangle {
 public class TriangleDemo {
     public static void main(String[] args) {
         Triangle t = new Triangle(3, 4, 5);
-        System.out.println("Triangle (3, 4, 5):");
+        System.out.println("Triangle sides: 3, 4, 5");
         System.out.println("Perimeter: " + t.getPerimeter() + " units");
         System.out.println("Area: " + t.getArea() + " sq units");
     }
