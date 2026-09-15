@@ -1,5 +1,3 @@
-package OOPJ.Assignment;
-
 import java.util.Scanner;
 
 class Date {
