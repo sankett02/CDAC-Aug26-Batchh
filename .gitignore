@@ -11,3 +11,4 @@ Release/
 .settings/
 .cproject
 .project
+.classpath
