@@ -1,4 +1,3 @@
-package OOPJ.Excercise;
 
 import java.util.Scanner;
 
