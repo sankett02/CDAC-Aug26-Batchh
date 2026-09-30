@@ -12,3 +12,5 @@ Release/
 .cproject
 .project
 .classpath
+.vscode/
+
