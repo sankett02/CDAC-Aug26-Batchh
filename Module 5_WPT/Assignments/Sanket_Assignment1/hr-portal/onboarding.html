@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TechNova Onboarding Portal - Registration for new hires with automated provisioning workflow.">
+  <title>New Joiner Onboarding | TechNova Solutions</title>
+  
+  <!-- External Shared HR Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="hr-navbar">
+    <a href="login.html" class="hr-brand">
+      &#128188; TechNova <span>HRMS</span>
+    </a>
+    <ul class="hr-nav-links">
+      <li><a href="login.html">Login</a></li>
+      <li><a href="directory.html">Employee Directory</a></li>
+      <li><a href="onboarding.html" class="active">New Joiner Onboarding</a></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+    
+    <header style="margin-bottom: 25px;">
+      <h1>New Hire Onboarding Application</h1>
+      <p class="subtitle">Complete your pre-joining profile to trigger automated account and workstation provisioning.</p>
+    </header>
+
+    <!-- Asynchronous Onboarding Workflow Progress Card -->
+    <div id="onboarding-flow-card" class="hr-card" style="display: none; border-color: var(--hr-primary-light);">
+      <h2>Automated Onboarding Pipeline</h2>
+      <p style="color: var(--hr-muted); font-size: 0.9rem; margin-bottom: 15px;">
+        Executing asynchronous promises sequentially using <code>.then()</code> and <code>.catch()</code>:
+      </p>
+      <div id="onboarding-steps-container"></div>
+      <div id="onboarding-final-banner" style="display: none; margin-top: 15px;"></div>
+    </div>
+
+    <!-- Onboarding Form with Fieldsets (Bonus Feature) -->
+    <div class="hr-card">
+      <form id="onboarding-form" action="#" method="POST" onsubmit="return handleOnboardingSubmit(event)">
+        
+        <!-- Fieldset 1: Personal Details -->
+        <fieldset>
+          <legend>1. Personal Information</legend>
+          
+          <div class="form-field">
+            <label for="ob-fullname">Full Name *</label>
+            <input type="text" id="ob-fullname" name="fullName" class="std-input" placeholder="e.g. Sanket Vilas Ambre" onkeyup="validateFullName()">
+            <span class="error-span" id="ob-fullname-error"></span>
+          </div>
+
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:15px;">
+            <div class="form-field">
+              <label for="ob-dob">Date of Birth *</label>
+              <input type="date" id="ob-dob" name="dateOfBirth" class="std-input" required>
+            </div>
+
+            <div class="form-field">
+              <label>Gender *</label>
+              <div style="display:flex; gap:15px; margin-top:10px;">
+                <label style="font-weight:normal;"><input type="radio" name="gender" value="Male" checked> Male</label>
+                <label style="font-weight:normal;"><input type="radio" name="gender" value="Female"> Female</label>
+                <label style="font-weight:normal;"><input type="radio" name="gender" value="Other"> Other</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="ob-address">Current Residential Address *</label>
+            <textarea id="ob-address" name="currentAddress" class="std-textarea" rows="3" placeholder="Enter street address, building, city, and postal code" required></textarea>
+          </div>
+        </fieldset>
+
+        <!-- Fieldset 2: Qualifications & Credentials -->
+        <fieldset>
+          <legend>2. Qualifications &amp; Credentials</legend>
+
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:15px;">
+            <div class="form-field">
+              <label for="ob-qualification">Highest Qualification *</label>
+              <select id="ob-qualification" name="highestQualification" class="std-select" onchange="validateDropdowns()">
+                <option value="">-- Select Highest Qualification --</option>
+                <option value="BTech_BE">Bachelor of Technology / Engineering</option>
+                <option value="PGDAC_CDAC">Post Graduate Diploma (CDAC)</option>
+                <option value="MCA_MSc">Master of Computer Applications / Science</option>
+                <option value="BSc_BCA">Bachelor of Science / Computer Applications</option>
+              </select>
+              <span class="error-span" id="ob-qualification-error"></span>
+            </div>
+
+            <div class="form-field">
+              <label for="ob-doc-upload">Passport Photo or Resume (PDF/IMG) *</label>
+              <input type="file" id="ob-doc-upload" name="candidateDocument" class="std-input" required>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:15px;">
+            <div class="form-field">
+              <label for="ob-email">Official Company Email *</label>
+              <input type="email" id="ob-email" name="officialEmail" class="std-input" placeholder="e.g. s.ambre@technova.com" onkeyup="validateOfficialEmail()">
+              <span class="error-span" id="ob-email-error"></span>
+            </div>
+
+            <div class="form-field">
+              <label for="ob-temp-password">Temporary Password *</label>
+              <input type="password" id="ob-temp-password" name="tempPassword" class="std-input" placeholder="Create temporary setup password" required>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Fieldset 3: Role Logistics & Schedule -->
+        <fieldset>
+          <legend>3. Job Logistics &amp; Induction Schedule</legend>
+
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:15px;">
+            <div class="form-field">
+              <label for="ob-department">Assigned Department *</label>
+              <select id="ob-department" name="assignedDepartment" class="std-select" onchange="validateDropdowns()">
+                <option value="">-- Select Department --</option>
+                <option value="Software Engineering">Software Engineering</option>
+                <option value="Cloud Architecture">Cloud Architecture &amp; DevOps</option>
+                <option value="Product Design">Product &amp; UX Design</option>
+                <option value="Cybersecurity">Cybersecurity &amp; Compliance</option>
+              </select>
+              <span class="error-span" id="ob-department-error"></span>
+            </div>
+
+            <div class="form-field">
+              <label for="ob-joining-date">Joining Date *</label>
+              <input type="date" id="ob-joining-date" name="joiningDate" class="std-input" required>
+            </div>
+
+            <div class="form-field">
+              <label for="ob-orientation-slot">Orientation Slot *</label>
+              <input type="datetime-local" id="ob-orientation-slot" name="orientationSlot" class="std-input" required>
+            </div>
+
+            <div class="form-field">
+              <label for="ob-reporting-time">Day One Reporting Time *</label>
+              <input type="time" id="ob-reporting-time" name="reportingTime" class="std-input" value="09:30" required>
+            </div>
+          </div>
+
+          <div class="form-field" style="margin-top: 15px;">
+            <label style="display:flex; align-items:center; gap:8px; font-weight:normal; cursor:pointer;">
+              <input type="checkbox" id="ob-declaration" name="declaration">
+              I certify that all details submitted above are authentic and complete. *
+            </label>
+            <span class="error-span" id="ob-declaration-error"></span>
+          </div>
+        </fieldset>
+
+        <!-- Action Buttons -->
+        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:20px;">
+          <button type="submit" id="ob-submit-btn" class="btn-hr-primary" style="flex:2; padding:12px 20px;">
+            Submit Onboarding Registration &rarr;
+          </button>
+          
+          <button type="reset" class="btn-hr-secondary" style="flex:1;">
+            Reset Form
+          </button>
+
+          <!-- 
+            "Need help?" plain button requirement:
+            This plain button does nothing yet; it is reserved for triggering a future live HR chatbot modal dialog.
+          -->
+          <button type="button" class="btn-hr-secondary" onclick="alert('HR Helpdesk is currently under development. Please reach out to hr-support@technova.com for immediate inquiries.')">
+            Need help?
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- TechNova Headquarters Office Map -->
+    <div class="hr-card">
+      <h2>TechNova Corporate Headquarters</h2>
+      <p class="subtitle">Mindspace Business Park, Malad West, Mumbai, Maharashtra 400064</p>
+      <div style="border-radius:8px; overflow:hidden;">
+        <iframe 
+          title="TechNova Office Map"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3768.1729012354784!2d72.834015!3d19.176718!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b6ff2d64096f%3A0xe5eeff1c3f9a77ee!2sMindspace%20Malad!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+          width="100%" 
+          height="320" 
+          style="border:0;" 
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Script logic -->
+  <script src="js/onboarding.js"></script>
+</body>
+</html>

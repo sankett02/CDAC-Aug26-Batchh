@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TechNova HR Portal Login - Secure administrative portal authentication.">
+  <title>HR Portal Login | TechNova Solutions</title>
+  
+  <!-- External Shared HR Portal Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-page-body" style="flex-direction: column;">
+
+  <!-- Navigation Row to move between pages -->
+  <nav class="hr-navbar" style="width: 100%; position: fixed; top: 0; left: 0;">
+    <a href="login.html" class="hr-brand">
+      &#128188; TechNova <span>HRMS</span>
+    </a>
+    <ul class="hr-nav-links">
+      <li><a href="login.html" class="active">Login</a></li>
+      <li><a href="directory.html">Employee Directory</a></li>
+      <li><a href="onboarding.html">New Joiner Onboarding</a></li>
+    </ul>
+  </nav>
+
+  <!-- Login Card Container (Centered with margin: auto, fixed width, rounded corners) -->
+  <div class="login-card" style="margin-top: 100px;">
+    <h2>TechNova Solutions</h2>
+    <p class="subtitle">Enter your employee credentials</p>
+
+    <!-- Form with onsubmit="return validate()" -->
+    <form id="login-form" action="#" method="POST" onsubmit="return validate()">
+      
+      <!-- Username Field -->
+      <div class="form-field">
+        <label for="username-input">Employee Username</label>
+        <input 
+          type="text" 
+          id="username-input" 
+          name="username" 
+          class="login-input" 
+          placeholder="e.g. sambre_admin" 
+          onkeyup="checkUsername()">
+        <span class="error-span" id="username-error"></span>
+      </div>
+
+      <!-- Password Field with Show/Hide toggle button -->
+      <div class="form-field">
+        <label for="password-input">Password</label>
+        <div class="password-field-wrapper">
+          <input 
+            type="password" 
+            id="password-input" 
+            name="password" 
+            class="login-input" 
+            placeholder="Min 8 chars, Aa1@..." 
+            onkeyup="checkPassword()">
+          <button 
+            type="button" 
+            id="toggle-pwd-btn" 
+            class="toggle-pwd-btn" 
+            onclick="togglePasswordVisibility()">Show</button>
+        </div>
+        <span class="error-span" id="password-error"></span>
+      </div>
+
+      <!-- Login Button styled with ID selector (#login-btn) -->
+      <button type="submit" id="login-btn">Sign In to Dashboard &rarr;</button>
+
+      <!-- Account helper link with no underline -->
+      <p class="signup-link-line">
+        Need an account? <a href="onboarding.html">Sign Up (New Onboarding)</a>
+      </p>
+    </form>
+  </div>
+
+  <!-- Script logic -->
+  <script src="js/login.js"></script>
+</body>
+</html>

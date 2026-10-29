@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nebula Nitro Roastery & Bakery - Small-batch nitrogen coffee infusions and slow-ferment sourdough bakery.">
+  <title>Nebula Nitro Roastery &amp; Craft Bakery</title>
+  
+  <!-- External Stylesheet (landing.css) -->
+  <link rel="stylesheet" href="landing.css">
+
+  <!-- 
+    CSS PRECEDENCE DEMO:
+    If the same property is styled across inline, internal, external, and tag:
+    Inline (style="") > Internal (<style>) & External (.class/#id) based on specificity > Tag > Universal (*).
+    When external and internal have identical selector specificity, the one declared LAST wins.
+  -->
+
+  <!-- Internal CSS Rule: Chosen specifically for page-exclusive promotional banner styling -->
+  <style>
+    /* Internal rule: Sets page-specific brand badge styling */
+    .exclusive-badge {
+      background-color: gold; /* Named color */
+      color: #78350f;          /* Hex color */
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 4px 10px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Timed Special Offer Banner (Appears 3 seconds after page loads via setTimeout) -->
+  <div id="special-offer-banner">
+    <span>🌟 Flash Perk: Order $50+ today and get 10% OFF plus a complimentary cold brew voucher!</span>
+    <button onclick="dismissSpecialOffer()">Dismiss &times;</button>
+  </div>
+
+  <!-- Hero Banner with ID Selector (#landing-hero-banner) -->
+  <header id="landing-hero-banner">
+    <div class="banner-inner">
+      <img src="images/banner.svg" alt="Nebula Nitro Roastery Graphic Banner" style="width:100%; border-radius:10px;">
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="container">
+    
+    <!-- Introduction Section -->
+    <section style="margin: 30px 0;">
+      <!-- Inline style demo with explanation comment -->
+      <!-- Inline style chosen here to guarantee vibrant amber brand accent on the primary header -->
+      <h1 style="color: #d97706;">Nebula Nitro Roastery &amp; Artisanal Bakery</h1>
+      
+      <p style="font-size: 1.15rem; color: #475569; margin-top: 10px;">
+        Welcome to Mumbai's pioneer small-batch roastery. We handcraft 
+        <span class="highlight-span">micro-lot nitro cold brews</span> paired with 36-hour slow-fermented 
+        wild sourdough viennoiserie, delivering extraordinary notes to serious coffee lovers.
+      </p>
+    </section>
+
+    <!-- Service Offers Cards Section (Flexbox Layout) -->
+    <section>
+      <h2>Signature Tasting Offers &amp; Bundles</h2>
+      <p style="color: #64748b; margin-bottom: 20px;">
+        Explore our curated morning flights and slow-fermented bakes.
+      </p>
+
+      <!-- 
+        Cards Flex Container:
+        - display: flex
+        - gap: 20px
+        - justify-content: center
+        - featured-card has a larger flex value (1.35 vs 1)
+      -->
+      <div class="cards-flex-container">
+        
+        <!-- Card 1: Nitro Cold Brew Flight -->
+        <div class="service-card feature-box">
+          <div>
+            <span class="badge-pill">Cold Infusion</span>
+            <h3>Nitro Cold Brew Flight</h3>
+            <p style="color: #64748b; font-size: 0.95rem;">
+              Three 150ml tasting pours of single-origin beans charged with pure nitrogen for a velvety, creamy cascade.
+            </p>
+          </div>
+          <div class="card-price">$12.50</div>
+        </div>
+
+        <!-- Card 2: Featured Artisan Brunch Box (Larger flex: 1.35) -->
+        <div class="service-card feature-box featured-card">
+          <div>
+            <span class="exclusive-badge">Chef's Signature (Featured)</span>
+            <h3>Artisan Viennoiserie &amp; Brew Box</h3>
+            <p style="color: #475569; font-size: 0.95rem;">
+              Freshly baked double-baked almond frangipane croissant, heirloom sourdough avocado tartine, and a 12oz nitrogen cold brew.
+            </p>
+          </div>
+          <div class="card-price">$18.00</div>
+        </div>
+
+        <!-- Card 3: Single-Origin Sourdough Pairing -->
+        <div class="service-card feature-box">
+          <div>
+            <span class="badge-pill">Bakery Special</span>
+            <h3>Wild Sourdough Loaf &amp; Espresso</h3>
+            <p style="color: #64748b; font-size: 0.95rem;">
+              Whole country sourdough boule crafted from organic stone-ground grain with house whipped churned butter.
+            </p>
+          </div>
+          <div class="card-price">$14.00</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Information Grid: Steps and Hours -->
+    <section class="info-grid">
+      
+      <!-- Ordered List: How to Order or Join -->
+      <div class="info-box feature-box">
+        <h3>How to Order or Join Our Bean Club</h3>
+        <ol>
+          <li>Browse our freshly roasted beans and daily bakery menu below.</li>
+          <li>Select your favorite items, desired quantities, and choose your delivery zone.</li>
+          <li>Review your live tiered discount calculation and place your reservation.</li>
+          <li>Receive freshly chilled nitro cans and warm oven boxes at your doorstep!</li>
+        </ol>
+      </div>
+
+      <!-- Unordered List: Opening Hours & External Link -->
+      <div class="info-box feature-box">
+        <h3>Roastery Tasting Room Hours</h3>
+        <ul>
+          <li>Monday &ndash; Friday: 06:30 AM &ndash; 08:30 PM</li>
+          <li>Saturday &ndash; Sunday: 07:00 AM &ndash; 09:30 PM</li>
+          <li>Live Roasting Sessions: Tuesdays &amp; Thursdays at 11:00 AM</li>
+        </ul>
+        <p style="margin-top: 15px;">
+          Learn more about direct-trade green coffee sourcing at the 
+          <a href="https://sca.coffee" target="_blank" rel="noopener" class="external-anchor">
+            Specialty Coffee Association (SCA) &nearr;
+          </a>
+        </p>
+      </div>
+
+    </section>
+
+    <!-- 
+      ==========================================================================
+      QUESTION 3: ORDER CALCULATOR INTERACTIVE SECTION
+      ==========================================================================
+    -->
+    <section id="order-calculator-section" class="order-calculator-card">
+      <h2>Build Your Roastery Order</h2>
+      <p style="color: #64748b; margin-bottom: 20px;">
+        Select your beverages and baked items. Order calculations, automated tiered discounts, and delivery rates update instantaneously.
+      </p>
+
+      <!-- Calculator Controls Row -->
+      <div class="calculator-controls">
+        
+        <!-- Menu Items Dropdown (Populated via createElement loop from JS array) -->
+        <div>
+          <label for="menu-item-select" style="font-weight:700; display:block; margin-bottom:6px;">Select Item *</label>
+          <select id="menu-item-select" class="calc-select">
+            <!-- Injected dynamically by landing.js using createElement & setAttribute -->
+          </select>
+        </div>
+
+        <!-- Quantity Input (Read with parseInt) -->
+        <div>
+          <label for="item-quantity-input" style="font-weight:700; display:block; margin-bottom:6px;">Quantity *</label>
+          <input type="number" id="item-quantity-input" class="calc-input" value="1" min="1" max="20">
+        </div>
+
+        <!-- Add to Order Button -->
+        <div>
+          <button type="button" class="btn-order-primary" style="width:100%;" onclick="addToOrder()">
+            + Add to Order
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Quantity Validation Error Message -->
+      <span id="order-qty-error" class="order-error"></span>
+
+      <!-- Active Cart Items List -->
+      <h3 style="margin-top: 25px;">Current Cart Items</h3>
+      <ul id="order-list-container" class="order-list-group">
+        <!-- Rendered with createElement & appendChild -->
+      </ul>
+
+      <!-- Delivery Area Dropdown (Processed via switch statement) -->
+      <div style="margin-top: 20px; max-width: 400px;">
+        <label for="delivery-area-select" style="font-weight:700; display:block; margin-bottom:6px;">Delivery Area *</label>
+        <select id="delivery-area-select" class="calc-select" onchange="calculateBill()">
+          <option value="store_pickup">Roastery Store Pickup ($0.00)</option>
+          <option value="downtown">Downtown Commercial Hub ($3.00)</option>
+          <option value="metro_suburbs">Suburban Metro Area ($5.50)</option>
+          <option value="greater_outskirts">Greater Outskirts Zone ($8.00)</option>
+          <option value="express_priority">60-Min Express Courier ($12.00)</option>
+        </select>
+      </div>
+
+      <!-- Bill Summary (Computed with reduce, if/else if ladder, ? :, and template literal) -->
+      <div id="bill-summary-display" class="bill-summary-box">
+        <!-- Injected dynamically by calculateBill() -->
+      </div>
+
+      <!-- Place Order Section (Promise with setTimeout & Async/Await/Try/Catch) -->
+      <div style="margin-top: 25px;">
+        <button id="place-order-btn" class="btn-order-primary" style="padding:14px 30px; font-size:1.1rem;" onclick="placeOrder()">
+          Place Order &rarr;
+        </button>
+      </div>
+
+      <!-- Status banner for order placement feedback -->
+      <div id="order-status-banner" style="display:none; margin-top:16px;"></div>
+
+    </section>
+
+  </main>
+
+  <!-- Floating "Order Now" Action Button (position: fixed at bottom right) -->
+  <a href="#order-calculator-section" id="floating-order-btn">
+    <span>&#9749;</span> Order Now
+  </a>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 Nebula Nitro Roastery &amp; Bakery. Crafted with passion, vanilla CSS &amp; modern ES6 JavaScript.</p>
+  </footer>
+
+  <!-- Landing Page Script -->
+  <script src="js/landing.js"></script>
+</body>
+</html>

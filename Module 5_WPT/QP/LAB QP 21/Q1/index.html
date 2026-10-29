@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Seminar Registration Form</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h2>Seminar Registration Form</h2>
+
+    <form id="seminarForm">
+
+        <!-- Participant Name -->
+        <label for="title">Title:</label>
+
+        <select id="title" required>
+            <option value="">Select Title</option>
+            <option value="Mr">Mr</option>
+            <option value="Mrs">Mrs</option>
+            <option value="Ms">Ms</option>
+            <option value="Dr">Dr</option>
+        </select>
+
+        <input
+            type="text"
+            id="firstName"
+            placeholder="First Name"
+            required
+        >
+
+        <input
+            type="text"
+            id="lastName"
+            placeholder="Last Name"
+            required
+        >
+
+        <br><br>
+
+        <!-- Email ID -->
+        <label for="email">Email ID:</label>
+
+        <input
+            type="email"
+            id="email"
+            required
+        >
+
+        <br><br>
+
+        <!-- Confirm Email ID -->
+        <label for="confirmEmail">Confirm Email ID:</label>
+
+        <input
+            type="email"
+            id="confirmEmail"
+            required
+        >
+
+        <br><br>
+
+        <!-- Seminar Selection -->
+        <label for="seminar">Seminar:</label>
+
+        <select id="seminar" required>
+            <option value="">Select Seminar</option>
+            <option value="SOA">SOA</option>
+            <option value="Design Patterns">Design Patterns</option>
+            <option value="Business Intelligence">
+                Business Intelligence
+            </option>
+        </select>
+
+        <br><br>
+
+        <!-- Level Selection -->
+        <label>Level:</label>
+
+        <input
+            type="radio"
+            name="level"
+            value="Introductory"
+            required
+        > Introductory
+
+        <input
+            type="radio"
+            name="level"
+            value="Intermediate"
+        > Intermediate
+
+        <input
+            type="radio"
+            name="level"
+            value="Advanced"
+        > Advanced
+
+        <br><br>
+
+        <!-- Calculate Training Cost -->
+        <button type="button" onclick="calculateCost()">
+            Calculate Training Cost
+        </button>
+
+        <br><br>
+
+        <!-- Display Calculated Cost -->
+        <label for="cost">Cost of Seminar:</label>
+
+        <input
+            type="text"
+            id="cost"
+            readonly
+        >
+
+        <br><br>
+
+        <!-- Display Details and Submit -->
+        <button type="button" onclick="displayDetails()">
+            Display Details
+        </button>
+
+        <button type="submit">
+            Submit
+        </button>
+
+    </form>
+
+    <!-- JavaScript File -->
+    <script src="script.js"></script>
+
+</body>
+</html>

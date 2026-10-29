@@ -6,6 +6,8 @@
 *.class
 Debug/
 Release/
+dist/
+build/
 
 # Eclipse / IDE project settings
 .settings/
@@ -14,3 +16,8 @@ Release/
 .classpath
 .vscode/
 
+# Node dependencies and logs
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

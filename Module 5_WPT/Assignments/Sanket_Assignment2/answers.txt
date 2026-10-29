@@ -1,0 +1,275 @@
+================================================================================
+ASSIGNMENT 2: JAVASCRIPT - PART A WRITTEN ANSWERS
+Student Name: Sanket Ambre
+================================================================================
+
+--------------------------------------------------------------------------------
+QUESTION 1:
+What is the difference between var, let and const? Explain scope, redeclaration
+and hoisting with a small example for each.
+--------------------------------------------------------------------------------
+Answer:
+1. Scope:
+   - 'var' is function-scoped (or globally scoped if declared outside a function). It ignores block boundaries like if/for blocks.
+   - 'let' and 'const' are block-scoped (confined within the nearest curly braces {}).
+   Example:
+     if (true) {
+       var x = 10;
+       let y = 20;
+       const z = 30;
+     }
+     console.log(x); // 10 (var leaks outside block)
+     // console.log(y); // ReferenceError: y is not defined
+     // console.log(z); // ReferenceError: z is not defined
+
+2. Redeclaration and Reassignment:
+   - 'var' allows redeclaration and reassignment within the same scope.
+   - 'let' allows reassignment, but cannot be redeclared in the same scope.
+   - 'const' cannot be redeclared or reassigned (it requires an immediate initial value).
+   Example:
+     var a = 1;
+     var a = 2; // Allowed
+     let b = 1;
+     // let b = 2; // SyntaxError: Identifier 'b' has already been declared
+     b = 3;     // Allowed (reassignment)
+     const c = 10;
+     // c = 20;  // TypeError: Assignment to constant variable
+
+3. Hoisting:
+   - 'var' is hoisted to the top of its scope and initialized with 'undefined'. Accessing it before declaration returns 'undefined'.
+   - 'let' and 'const' are hoisted, but NOT initialized. They reside in the "Temporal Dead Zone" (TDZ) from the start of the block until the declaration line. Accessing them beforehand throws a ReferenceError.
+   Example:
+     console.log(v); // undefined
+     var v = 5;
+
+     // console.log(l); // ReferenceError: Cannot access 'l' before initialization
+     let l = 10;
+
+
+--------------------------------------------------------------------------------
+QUESTION 2:
+What does typeof print for each of these: 4, "hello", true, null, undefined?
+Why is JavaScript called a dynamically typed language?
+--------------------------------------------------------------------------------
+Answer:
+- typeof 4           --> "number"
+- typeof "hello"     --> "string"
+- typeof true        --> "boolean"
+- typeof null        --> "object"  (Note: this is a historical bug in JavaScript from its first implementation in 1995)
+- typeof undefined   --> "undefined"
+
+Why JavaScript is dynamically typed:
+In JavaScript, types are associated with runtime values rather than variable declarations. A variable does not have a fixed type; it can hold a number at one moment and be reassigned to a string or an object later without any compile-time type errors.
+Example:
+  let data = 42;        // data holds a number
+  data = "now a text";  // data now holds a string, perfectly valid in JS.
+
+
+--------------------------------------------------------------------------------
+QUESTION 3:
+Explain == versus ===. Then explain the difference between || and ??, and say
+which one you would use for a default value when 0 is a valid input.
+--------------------------------------------------------------------------------
+Answer:
+1. == (Loose Equality) vs === (Strict Equality):
+   - '==' compares values after performing implicit type coercion (converting operands to a common type before comparison).
+     Example: 5 == "5" evaluates to true (the string "5" is converted to number 5).
+   - '===' compares both value AND data type without any type conversion.
+     Example: 5 === "5" evaluates to false (number !== string).
+
+2. Logical OR (||) vs Nullish Coalescing (??):
+   - '||' returns the right-hand operand if the left operand is ANY falsy value (false, 0, "", null, undefined, NaN).
+   - '??' (Nullish Coalescing) returns the right-hand operand ONLY when the left operand is null or undefined ("nullish").
+
+3. When 0 is a valid input:
+   - We must use '??' (Nullish Coalescing).
+   - Because with '||', 0 is falsy, so (0 || 10) evaluates to 10, mistakenly overwriting the valid input 0.
+   - With '??', (0 ?? 10) evaluates to 0, correctly keeping 0 as the valid value.
+
+
+--------------------------------------------------------------------------------
+QUESTION 4:
+A server sends you a student with an id, a name, two phone numbers and an
+address that has a street and a city. Write it as a JSON object. Show how you
+read the second phone number and the city. What does student?.address?.city do
+when address is missing?
+--------------------------------------------------------------------------------
+Answer:
+1. JSON Object:
+{
+  "id": 101,
+  "name": "Sanket Ambre",
+  "phoneNumbers": [
+    "9876543210",
+    "9123456780"
+  ],
+  "address": {
+    "street": "42 Tech Park Road",
+    "city": "Mumbai"
+  }
+}
+
+2. Reading the values:
+   - Second phone number:
+     const secondPhone = student.phoneNumbers[1];
+     // Output: "9123456780"
+   - City:
+     const cityName = student.address.city;
+     // Output: "Mumbai"
+
+3. What student?.address?.city does when address is missing:
+   - The '?.' is the Optional Chaining operator.
+   - If 'address' is undefined or null, instead of throwing a runtime error ("TypeError: Cannot read properties of undefined"), JavaScript short-circuits and safely returns 'undefined'.
+
+
+--------------------------------------------------------------------------------
+QUESTION 5:
+Given var arr = [10, 45, 32, 76, 45, 61, 78];, write one line each to get:
+(a) the even numbers,
+(b) every number doubled,
+(c) the sum of all numbers.
+--------------------------------------------------------------------------------
+Answer:
+Given: var arr = [10, 45, 32, 76, 45, 61, 78];
+
+(a) Even numbers:
+const evens = arr.filter(num => num % 2 === 0);
+// Result: [10, 32, 76, 78]
+
+(b) Every number doubled:
+const doubled = arr.map(num => num * 2);
+// Result: [20, 90, 64, 152, 90, 122, 156]
+
+(c) Sum of all numbers:
+const sum = arr.reduce((acc, curr) => acc + curr, 0);
+// Result: 347
+
+
+--------------------------------------------------------------------------------
+QUESTION 6:
+Explain what a callback function is. Rewrite function add(x, y) { return x + y; }
+as an arrow function with a single statement.
+--------------------------------------------------------------------------------
+Answer:
+1. Callback Function Explanation:
+   A callback function is a function passed as an argument into another function, which is then invoked ("called back") inside that outer function to complete a routine or respond to an action/event (such as after an asynchronous operation finishes, or for each element during array iteration like .map or .filter).
+
+2. Rewriting as an arrow function with a single statement (concise body with implicit return):
+const add = (x, y) => x + y;
+
+
+--------------------------------------------------------------------------------
+QUESTION 7:
+What is the output order of this code, and why?
+console.log("A"); setTimeout(() => console.log("B"), 1000); console.log("C");
+--------------------------------------------------------------------------------
+Answer:
+Output order:
+A
+C
+B
+
+Explanation (Event Loop):
+1. console.log("A") executes synchronously on the main thread and prints "A" immediately.
+2. setTimeout(..., 1000) registers a timer with the browser Web APIs and immediately offloads the callback. The main call stack does not block; execution continues immediately.
+3. console.log("C") executes synchronously and prints "C".
+4. After 1000 milliseconds have elapsed, the Web API pushes the callback (() => console.log("B")) into the Callback/Task Queue.
+5. The Event Loop checks if the main Call Stack is clear. Once clear, it pushes the callback onto the Call Stack, and "B" is printed.
+
+
+--------------------------------------------------------------------------------
+QUESTION 8:
+What is callback hell, and how do promises solve it? Name the three states of a
+promise and the two methods used to handle it.
+--------------------------------------------------------------------------------
+Answer:
+1. Callback Hell:
+   Callback Hell (also known as the "Pyramid of Doom") happens when multiple asynchronous operations are nested inside callbacks of previous callbacks. It results in deeply indented, hard-to-read, and error-prone code where error handling must be duplicated at every level.
+
+2. How Promises solve it:
+   Promises flatten nested structures by allowing asynchronous operations to be chained sequentially using '.then()' and handled with a single centralized '.catch()' block. This turns triangular indentation into linear, readable code.
+
+3. Three states of a Promise:
+   - Pending: Initial state; operation has neither succeeded nor failed yet.
+   - Fulfilled: The asynchronous operation completed successfully (resolved).
+   - Rejected: The asynchronous operation failed.
+
+4. Two methods used to handle a promise:
+   - .then() : Handles the resolved/fulfilled value.
+   - .catch(): Handles any error or rejection.
+   (Note: .finally() also exists to run cleanup code regardless of outcome).
+
+
+--------------------------------------------------------------------------------
+QUESTION 9:
+Rewrite sum(2, 3).then(r => console.log(r)).catch(e => console.log(e)) using
+async and await with try and catch. Why must the function be marked async?
+--------------------------------------------------------------------------------
+Answer:
+1. Rewritten code:
+async function handleSum() {
+  try {
+    const r = await sum(2, 3);
+    console.log(r);
+  } catch (e) {
+    console.log(e);
+  }
+}
+handleSum();
+
+2. Why must the function be marked 'async'?
+   JavaScript requires the 'async' keyword on a function declaration in order to use 'await' inside its body (in standard ES modules or scripts). Marking a function 'async' tells the JavaScript engine that this function will execute asynchronously and will always automatically return a Promise.
+
+
+--------------------------------------------------------------------------------
+QUESTION 10:
+What is the DOM? Name the method used to find an element by its id, and explain
+the difference between innerHTML and value.
+--------------------------------------------------------------------------------
+Answer:
+1. What is the DOM:
+   The DOM (Document Object Model) is a tree-like, in-memory object representation of the HTML document created by the browser. It allows programming languages like JavaScript to dynamically access, modify, add, or delete HTML elements, attributes, and CSS styles.
+
+2. Method to find an element by its id:
+   document.getElementById("elementId")
+
+3. Difference between innerHTML and value:
+   - 'innerHTML' gets or sets the HTML markup or text content contained BETWEEN an element's opening and closing tags (e.g., inside <div>, <p>, <h1>, <span>).
+   - 'value' gets or sets the current user input or data stored inside interactive form controls (e.g., <input>, <textarea>, <select>). Form input tags do not have inner content; their typed text is accessed via the .value property.
+
+
+--------------------------------------------------------------------------------
+QUESTION 11:
+What does fetch(url) return, and why do we need await twice, once for fetch and
+once for response.json()? What does response.status tell you?
+--------------------------------------------------------------------------------
+Answer:
+1. What fetch(url) returns:
+   'fetch(url)' returns a Promise that resolves to a 'Response' object representing the HTTP response headers and stream.
+
+2. Why we need await twice:
+   - First await (await fetch(url)): Waits for the server to reply with HTTP headers and status (establishing connection and receiving response metadata). The entire response body has not necessarily arrived or finished streaming yet.
+   - Second await (await response.json()): Reads the streaming response body to completion and asynchronously parses the raw JSON text into a usable JavaScript object or array. Since parsing the stream is an asynchronous operation, it returns a Promise and requires a second 'await'.
+
+3. What response.status tells you:
+   'response.status' is an integer representing the HTTP status code returned by the server:
+   - 200-299: Success (e.g., 200 OK, 201 Created)
+   - 400-499: Client errors (e.g., 404 Not Found, 401 Unauthorized)
+   - 500-599: Server errors (e.g., 500 Internal Server Error)
+
+
+--------------------------------------------------------------------------------
+QUESTION 12:
+What is a regular expression, and why is it better than many if statements for
+checking a password rule?
+--------------------------------------------------------------------------------
+Answer:
+1. What is a regular expression:
+   A regular expression (regex) is a sequence of characters that forms a search/validation pattern. It is used to match, search, validate, and replace specific character patterns within strings.
+
+2. Why regex is better than many if statements for checking password rules:
+   - Conciseness and Elegance: A complex password requirement (e.g., at least 8 characters, with 1 uppercase, 1 lowercase, 1 digit, and 1 special symbol) can be expressed in a single line using lookahead assertions:
+     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+   - Performance and Efficiency: The browser's native C++ regex engine parses and evaluates the pattern at low-level machine speed in a single pass, whereas manual 'if' statements require looping over every character, checking ASCII codes, maintaining multiple boolean flags, and writing dozens of lines of nested logic.
+   - Maintainability: Regex patterns are standardized and declarative; rules can be updated or tightened easily in one place without introducing indexing bugs or logic flaws.
+================================================================================

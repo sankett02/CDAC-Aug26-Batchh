@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio of Sanket Ambre - Full Stack Web Developer showcasing projects, technical skills, and background.">
+  <title>Sanket Ambre | Professional Developer Portfolio</title>
+  
+  <!-- External Stylesheet (Shared across all portfolio pages) -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- 
+    CSS PRECEDENCE DEMO:
+    1. Inline styles (style="") override all rules below.
+    2. ID selectors (#main-nav) have higher specificity than classes.
+    3. Class selectors (.card) override tag selectors.
+    4. Tag selectors (p, h1, div) override the universal selector (*).
+  -->
+
+  <!-- Internal CSS: Chosen specifically for page-exclusive styling of hero avatar pulse -->
+  <style>
+    /* Internal style chosen here because this pulse animation is unique to the home landing */
+    .hero-avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      box-shadow: 0 0 20px rgba(79, 70, 229, 0.4);
+      margin-bottom: 16px;
+      transition: transform 0.3s ease;
+    }
+    .hero-avatar:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar (Fixed at top using position: fixed) -->
+  <nav id="main-nav">
+    <a href="index.html" class="nav-brand">
+      <img src="images/profile.svg" alt="Sanket Ambre Logo" width="38" height="38">
+      <span>Sanket.Dev</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="https://github.com/sanketambre" target="_blank" rel="noopener">GitHub Profile</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content Container -->
+  <main>
+    <!-- Dynamic Welcome & Interactive Toolbar -->
+    <section class="interactive-toolbar">
+      <div class="welcome-control">
+        <label for="visitor-name-input" style="font-weight:600;">Your Name:</label>
+        <input type="text" id="visitor-name-input" placeholder="e.g. Alex Recruiter">
+        <button class="btn-secondary" onclick="displayWelcome()">Greet Me</button>
+      </div>
+
+      <div>
+        <!-- Theme Toggle Button: switches between Light and Dark mode using if/else -->
+        <button id="theme-toggle-btn" class="btn-secondary" onclick="toggleTheme()">Dark mode</button>
+      </div>
+    </section>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <img src="images/profile.svg" alt="Sanket Ambre Profile Photo" class="hero-avatar" width="140" height="140">
+      
+      <!-- Time-based dynamic greeting (Bonus) -->
+      <p id="time-greeting" style="font-size:1rem; color:var(--primary-color); font-weight:600; margin-bottom:5px;">Welcome to my portfolio!</p>
+      
+      <!-- Dynamic Welcome Heading updated via template literals -->
+      <h1 id="welcome-heading">Welcome, Recruiter &amp; Tech Enthusiast!</h1>
+      <h2>Full Stack Web Developer &amp; Systems Engineer</h2>
+      <h3>Building elegant, high-performance web applications</h3>
+
+      <p>
+        I am <span class="tagline-span">Sanket Ambre</span>, passionate about creating modern JavaScript applications,
+        scalable REST APIs, and clean software architecture.
+      </p>
+
+      <!-- Inline style attribute demo with explanation: used for instant CTA highlight -->
+      <!-- Inline style chosen to guarantee specific vibrant button contrast for the primary call-to-action -->
+      <a href="projects.html" class="btn-primary" style="font-size: 1.1rem; padding: 12px 28px;">
+        View My Projects &rarr;
+      </a>
+    </section>
+
+    <!-- Middle Row: Flexbox (Left: Subscribe Box, Right: About Me) -->
+    <section class="middle-row">
+      <div class="subscribe-box">
+        <h3>Stay Connected</h3>
+        <p style="font-size: 0.9rem; color: var(--text-muted);">
+          Subscribe to receive occasional updates regarding my open-source projects and tech write-ups.
+        </p>
+        <label for="subscribe-email" style="display:none;">Email</label>
+        <input type="email" id="subscribe-email" placeholder="Enter your email address">
+        <button class="btn-primary" style="width:100%;" onclick="alert('Thank you for subscribing! Updates will be sent to ' + document.getElementById('subscribe-email').value)">
+          Subscribe
+        </button>
+      </div>
+
+      <div class="about-box">
+        <h3>About Me</h3>
+        <p>
+          I am a dedicated software engineer with a strong foundation in modern web technologies, object-oriented 
+          programming, and relational database systems. Having worked across the full stack from HTML5, CSS3, and 
+          vanilla ES6+ JavaScript to Node.js and Java, I love building interactive, reliable user experiences.
+        </p>
+        <p style="margin-top: 10px;">
+          Connect with me on 
+          <a href="https://linkedin.com" target="_blank" rel="noopener" style="color:var(--primary-color); font-weight:600;">LinkedIn</a> 
+          or check my source repositories on 
+          <a href="https://github.com" target="_blank" rel="noopener" style="color:var(--primary-color); font-weight:600;">GitHub</a>.
+        </p>
+      </div>
+    </section>
+
+    <!-- Card Row: Flexbox with 3 cards (Education, Skills, Projects) -->
+    <section class="card-row">
+      <!-- Card 1: Education -->
+      <div class="card">
+        <span class="card-icon">&#127891;</span>
+        <h3>Education Timeline</h3>
+        <ol>
+          <li><strong>Post Graduate Diploma (Advanced Computing)</strong> - CDAC (2024)</li>
+          <li><strong>Bachelor of Engineering (Computer Engineering)</strong> - Mumbai University (2020 - 2024)</li>
+          <li><strong>Higher Secondary Certificate (Science &amp; Maths)</strong> - Maharashtra State Board</li>
+        </ol>
+      </div>
+
+      <!-- Card 2: Skills with Show/Hide toggle -->
+      <div class="card">
+        <span class="card-icon">&#9881;</span>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+          <h3 style="margin:0;">Core Skills</h3>
+          <button id="skills-toggle-btn" class="btn-secondary" style="padding:4px 10px; font-size:0.8rem;" onclick="toggleSkillsList()">Hide Skills</button>
+        </div>
+        <ul id="skills-list">
+          <li>JavaScript (ES6+, DOM Manipulation, Async/Await)</li>
+          <li>HTML5 &amp; Semantic CSS3 (Flexbox, Box Model, Animations)</li>
+          <li>Java, Spring Boot, &amp; Object Oriented Design</li>
+          <li>Relational Databases (MySQL, PostgreSQL) &amp; MongoDB</li>
+          <li>RESTful API Architecture &amp; Git Version Control</li>
+        </ul>
+      </div>
+
+      <!-- Card 3: Projects Preview (Demonstrating position: relative & position: absolute) -->
+      <!-- 
+        CSS POSITION DEMO:
+        - static: default normal flow position.
+        - relative: element positioned relative to its normal position; acts as positioning parent.
+        - absolute: positioned relative to nearest positioned ancestor (.card).
+        - fixed: element fixed relative to viewport (like #main-nav).
+      -->
+      <div class="card" style="position: relative;">
+        <span class="badge-new">New</span>
+        <span class="card-icon">&#128187;</span>
+        <h3>Featured Project</h3>
+        <p style="color: var(--text-muted); margin-bottom: 12px;">
+          <strong>TechNova Enterprise Portal:</strong> A full-featured employee onboarding and directory web application built with vanilla JavaScript.
+        </p>
+        <a href="projects.html" style="color: var(--primary-color); font-weight: 600; text-decoration: none;">
+          Explore all projects &rarr;
+        </a>
+      </div>
+    </section>
+
+    <!-- GitHub Repositories Section (Fetch with async/await) -->
+    <section class="repo-section">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+        <div>
+          <h2>Public GitHub Repositories</h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">
+            Fetched dynamically from GitHub REST API using <code>async</code> and <code>await</code>.
+          </p>
+        </div>
+        <button id="load-repos-btn" class="btn-primary" onclick="loadGitHubRepos()">Load Repositories</button>
+      </div>
+
+      <!-- Error message container (red text if request fails) -->
+      <div id="repo-error-message" style="margin-top: 10px;"></div>
+
+      <!-- Dynamic list of repos loaded via document.createElement & appendChild -->
+      <ul id="repo-list-container" class="repo-list"></ul>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 Sanket Ambre. Built from scratch with semantic HTML, CSS &amp; Vanilla JavaScript.</p>
+  </footer>
+
+  <!-- Page Logic Script -->
+  <script src="js/home.js"></script>
+</body>
+</html>

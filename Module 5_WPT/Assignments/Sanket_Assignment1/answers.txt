@@ -1,0 +1,195 @@
+================================================================================
+ASSIGNMENT 1: HTML & CSS - PART A WRITTEN ANSWERS
+Student Name: Sanket Ambre
+================================================================================
+
+--------------------------------------------------------------------------------
+QUESTION 1:
+A user opens your portfolio from a link. Describe step by step what happens
+between the browser and the server, and draw a simple client-server diagram.
+Say where the app logic and the database sit.
+--------------------------------------------------------------------------------
+Answer:
+Step-by-step breakdown:
+1. URL Resolution & DNS Lookup: The user enters or clicks the URL. The browser checks its local cache and queries DNS (Domain Name System) servers to resolve the domain name (e.g., sanket.dev) into a machine-readable IP address.
+2. TCP 3-Way Handshake & TLS/SSL: The browser initiates a TCP connection to the server on port 80 (HTTP) or port 443 (HTTPS) with a SYN, SYN-ACK, ACK sequence, followed by TLS cryptographic negotiation.
+3. HTTP Request: The browser formats and sends an HTTP GET request (e.g., "GET /index.html HTTP/1.1") with headers (User-Agent, Accept, Host).
+4. Web Server & Application Logic: The server receives the request. The web server (e.g., Nginx/Apache) routes it to the application logic (Node.js, Java Spring Boot, Python).
+5. Database Query: If dynamic content is required, the application logic queries the Database (MySQL, PostgreSQL, MongoDB), receives raw records, and processes them.
+6. HTTP Response: The server wraps the HTML/CSS/JS payload into an HTTP response (Status 200 OK) with Content-Type headers and streams it back.
+7. Browser Rendering: The browser parses HTML to build the DOM, parses CSS to build the CSSOM, combines them into a Render Tree, calculates layout geometry, paints pixels, and executes JavaScript.
+
+Client-Server Text Diagram:
++-------------------+                          +-------------------+
+|      BROWSER      |  --- 1. HTTP GET --->    |    WEB SERVER     |
+|     (Client)      |                          | (e.g., Nginx)     |
+| - Parses DOM/CSSOM|  <-- 6. HTTP 200 (HTML)- +---------+---------+
+| - Executes JS     |                                    |
++-------------------+                                    | 2. Passes to
+                                                         v
+                                               +-------------------+
+                                               | APPLICATION LOGIC |
+                                               | (Node/Java/Python)|
+                                               +---------+---------+
+                                                         | 3. SQL / Query
+                                                         v
+                                               +-------------------+
+                                               |     DATABASE      |
+                                               | (MySQL, Postgres) |
+                                               +-------------------+
+
+Where App Logic and Database sit:
+- The Application Logic runs on the backend application server.
+- The Database sits on a dedicated, secured database server behind the backend private network.
+
+
+--------------------------------------------------------------------------------
+QUESTION 2:
+Your contact form sends a visitor's message to a server. Should it use GET or
+POST, and why? What happens if method is left out? Name the status code the
+server returns on success and the family of codes that means the server failed.
+--------------------------------------------------------------------------------
+Answer:
+1. Should it use GET or POST, and why:
+   It should definitely use POST.
+   - Security: GET appends all form data directly into the URL query string (e.g., ?name=John&email=john@email.com), which gets logged in browser history, server access logs, and proxy caches. POST sends form data encapsulated inside the HTTP message body, keeping personal messages and emails private.
+   - Size limit: GET has URL length limits (around 2048 characters), making it unsuitable for multi-paragraph contact messages. POST has no fixed payload size restrictions.
+
+2. What happens if method is left out:
+   The HTML specification defaults to method="GET". If method is omitted, the form data is sent as a URL query string.
+
+3. Status code on success:
+   - 200 OK (or 201 Created if a resource was created).
+
+4. Family of codes meaning the server failed:
+   - 5xx family (Server Error, e.g., 500 Internal Server Error, 502 Bad Gateway, 503 Service Unavailable).
+
+
+--------------------------------------------------------------------------------
+QUESTION 3:
+Name the three types of CSS and say where each is written. If all three colour
+the same paragraph differently, which wins? Which type would you use for a style
+shared by four pages, and why?
+--------------------------------------------------------------------------------
+Answer:
+1. The three types of CSS and where each is written:
+   - External CSS: Written in a standalone '.css' file (e.g., style.css) and linked in the HTML <head> using <link rel="stylesheet" href="style.css">.
+   - Internal (Embedded) CSS: Written inside <style> tags located within the <head> section of a specific HTML document.
+   - Inline CSS: Written directly on an individual HTML element using the 'style' attribute (e.g., <p style="color: blue;">).
+
+2. If all three colour the same paragraph differently, which wins?
+   Inline CSS wins because it has the highest specificity (specificity weight 1000).
+
+3. Which type to use for a style shared by four pages, and why:
+   Use External CSS.
+   Why:
+   - Maintainability / DRY Principle: Any visual change only needs to be updated once in the shared stylesheet rather than duplicated across four separate files.
+   - Performance / Caching: The browser caches external CSS files after the first page view, drastically speeding up subsequent page loads across the site.
+
+
+--------------------------------------------------------------------------------
+QUESTION 4:
+A page has <p id="intro" class="note">Hello</p>. Rules exist for *, p, .note and
+#intro, each with a different color. Which applies, and what is the full order of
+precedence from strongest to weakest?
+--------------------------------------------------------------------------------
+Answer:
+1. Which applies:
+   The rule with the ID selector '#intro' applies, because ID selectors have significantly higher specificity than class, tag, or universal selectors.
+
+2. Full order of precedence (from strongest to weakest):
+   1. Inline styles [style="..."]      (Weight: 1-0-0-0)
+   2. ID selector [#intro]             (Weight: 0-1-0-0)
+   3. Class selector [.note]           (Weight: 0-0-1-0)
+   4. Tag/Type selector [p]            (Weight: 0-0-0-1)
+   5. Universal selector [*]           (Weight: 0-0-0-0)
+
+
+--------------------------------------------------------------------------------
+QUESTION 5:
+Explain padding and margin with a small drawing of a <div> showing content,
+padding, border and margin. What does box-sizing: border-box change?
+--------------------------------------------------------------------------------
+Answer:
+1. Padding vs Margin:
+   - Padding: The clearance space inside the element, between the content and the element's border. Padding takes the background color of the element.
+   - Margin: The clearance space outside the border, separating the element from adjacent elements. Margins are completely transparent and can collapse.
+
+2. Box Model Drawing:
++-------------------------------------------------------+
+|                      MARGIN                           |
+|   +-----------------------------------------------+   |
+|   |                  BORDER                       |   |
+|   |   +---------------------------------------+   |   |
+|   |   |              PADDING                  |   |   |
+|   |   |   +-------------------------------+   |   |   |
+|   |   |   |            CONTENT            |   |   |   |
+|   |   |   |      (Text, Images, etc.)     |   |   |   |
+|   |   |   +-------------------------------+   |   |   |
+|   |   |                                       |   |   |
+|   |   +---------------------------------------+   |   |
+|   |                                               |   |
+|   +-----------------------------------------------+   |
+|                                                       |
++-------------------------------------------------------+
+
+3. What 'box-sizing: border-box' changes:
+   - Default (content-box): Total rendered width = specified width + padding-left + padding-right + border-left + border-right. Adding padding expands the element beyond its set width.
+   - With border-box: The specified width and height INCLUDE padding and border. Content width automatically shrinks to accommodate padding and border, preventing layout breaking and horizontal scrollbars.
+
+
+--------------------------------------------------------------------------------
+QUESTION 6:
+Where does JavaScript code run, and what is the JS engine in a browser? Why is
+no compiler needed to run JavaScript? Name two things JavaScript can do on a
+web page that HTML and CSS alone cannot.
+--------------------------------------------------------------------------------
+Answer:
+1. Where JavaScript runs:
+   JavaScript runs on the client-side within the browser's execution runtime environment (or on the server side inside runtimes like Node.js / Deno).
+
+2. What the JS engine is in a browser:
+   The JS engine is the specialized software program embedded within the browser that parses, interprets, optimizes, and executes JavaScript code.
+   Examples: Google V8 (Chrome, Edge), SpiderMonkey (Firefox), JavaScriptCore / Nitro (Safari).
+
+3. Why no compiler is needed:
+   JavaScript is designed as an interpreted/JIT (Just-In-Time) compiled scripting language. Browsers feature built-in JIT compilers that compile source code directly to machine code in memory at execution time, eliminating the need for an offline compilation step.
+
+4. Two things JavaScript can do that HTML and CSS cannot:
+   - Asynchronous Network Requests: Fetch data from third-party REST APIs and servers in the background without reloading the page (AJAX / Fetch API).
+   - Dynamic State and Data Processing: Perform complex runtime algorithmic computations, sorting, filtering arrays, and handling programmatic application state.
+
+
+--------------------------------------------------------------------------------
+QUESTION 7:
+JavaScript has no type safety. Explain what happens when you write a = 5; and
+then a = "hello";. Name the three data types you have learned so far.
+--------------------------------------------------------------------------------
+Answer:
+1. What happens when writing a = 5; then a = "hello";:
+   JavaScript is dynamically and loosely typed. Variables hold references to values rather than being bound to a fixed data type.
+   When 'a = 5;' executes, 'a' points to a primitive Number value in memory.
+   When 'a = "hello";' executes, the JavaScript engine dynamically rebinds the identifier 'a' to a primitive String value without error. The previous number is garbage collected if no other references exist.
+
+2. Three data types learned:
+   - Number (e.g., 42, 3.14)
+   - String (e.g., "hello world")
+   - Boolean (e.g., true, false)
+   (Additional fundamental types: undefined, null, Object).
+
+
+--------------------------------------------------------------------------------
+QUESTION 8:
+Explain the four values of the CSS position property (static, relative,
+absolute, fixed). When would you use top, left, right and bottom?
+--------------------------------------------------------------------------------
+Answer:
+1. Four values of CSS position:
+   - static: Default normal document flow. 'top', 'bottom', 'left', 'right' and 'z-index' have no effect.
+   - relative: Positioned relative to its normal position in the document flow. Space originally taken is preserved. Acts as the coordinate container for child absolute elements.
+   - absolute: Removed from normal document flow. Positioned relative to its nearest ancestor that has a position other than static (or the initial containing block). Does not leave empty space.
+   - fixed: Removed from normal flow and positioned relative to the browser viewport. Remains pinned at the exact same screen coordinates even when the user scrolls the page.
+
+2. When to use top, left, right, and bottom:
+   These offset properties are used when an element has a position set to relative, absolute, fixed, or sticky. They define the precise offset distance the element should be moved from the corresponding edges of its reference container.
+================================================================================

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Projects Showcase of Sanket Ambre - Dynamic project catalog with live filtering, table rendering, and featured work.">
+  <title>Projects Showcase | Sanket Ambre</title>
+  
+  <!-- External Shared Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar (Fixed at top) -->
+  <nav id="main-nav">
+    <a href="index.html" class="nav-brand">
+      <img src="images/profile.svg" alt="Sanket Logo" width="38" height="38">
+      <span>Sanket.Dev</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="projects.html" class="active">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="https://github.com/sanketambre" target="_blank" rel="noopener">GitHub Profile</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content Container -->
+  <main style="max-width: 1050px; margin: 30px auto; padding: 0 20px;">
+    
+    <header style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom: 20px;">
+      <div>
+        <h1>Projects Catalog &amp; Architecture</h1>
+        <p style="color: var(--text-muted);">
+          A data-driven catalog rendered dynamically from ES6 classes, promises, and array transformations.
+        </p>
+      </div>
+
+      <!-- Secondary Promise Status Demo (.then() and .catch()) -->
+      <div id="server-status-pill" style="font-size:0.9rem; font-weight:600; padding:6px 12px; background:#ffffff; border-radius:20px; border:1px solid #cbd5e1; box-shadow:var(--shadow);">
+        🟡 Pinging server health...
+      </div>
+    </header>
+
+    <!-- Loading Indicator for pretend server Promise -->
+    <div id="loading-indicator" style="padding: 16px; background:#e0f2fe; color:#0369a1; border-radius:8px; margin-bottom:20px; text-align:center; font-weight:600;">
+      Loading projects...
+    </div>
+
+    <!-- Search, Filter & Sort Controls Row -->
+    <section class="table-container" style="padding: 16px 20px; margin-bottom: 20px;">
+      <div class="filter-row">
+        <!-- Search by Title -->
+        <div>
+          <label for="search-title-input" style="font-weight:600; margin-right:6px;">Search by Title:</label>
+          <input type="text" id="search-title-input" placeholder="Type project name..." onkeyup="applyFilters()">
+        </div>
+
+        <!-- Filter by Technology -->
+        <div>
+          <label for="filter-tech-select" style="font-weight:600; margin-right:6px;">Filter Tech:</label>
+          <select id="filter-tech-select" onchange="applyFilters()">
+            <option value="">All Technologies</option>
+          </select>
+        </div>
+
+        <!-- Bonus: Sort Button -->
+        <button id="sort-title-btn" class="btn-secondary" onclick="toggleSortByTitle()">
+          Sort Title (A-Z) &uarr;
+        </button>
+
+        <!-- Template Literal Status Counter: "Showing N of M projects" -->
+        <span id="projects-count-status" class="status-counter">Showing 0 of 0 projects</span>
+      </div>
+
+      <!-- Metrics computed with map and reduce -->
+      <div id="project-stats-info" style="font-size: 0.9rem; color: var(--text-muted); padding-top: 8px; border-top: 1px dashed var(--border-color);">
+        <!-- Computed dynamically in projects.js -->
+      </div>
+    </section>
+
+    <!-- Data-Driven Table Section -->
+    <section class="table-container">
+      <h2>Project Implementations</h2>
+      <table class="project-table">
+        <thead>
+          <tr>
+            <th style="width: 25%;">Project Title</th>
+            <th style="width: 25%;">Tech Used</th>
+            <th style="width: 30%;">Description</th>
+            <th style="width: 10%;">Source</th>
+            <th style="width: 10%;">Live Demo</th>
+          </tr>
+        </thead>
+        <!-- Table rows populated dynamically via loop, createElement, destructuring, ?. and ?? -->
+        <tbody id="projects-tbody">
+          <!-- Populated by JavaScript -->
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Top Two Featured Project Cards -->
+    <section style="margin-top: 40px;">
+      <h2>Featured Highlights</h2>
+      <p style="color: var(--text-muted); margin-bottom: 16px;">
+        Generated using the <code>FeaturedProject</code> subclass with dynamic badges.
+      </p>
+      <div class="card-row" id="featured-cards-container">
+        <!-- Injected dynamically via projects.js -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 Sanket Ambre. Project data loaded through native ES6 Promises &amp; Classes.</p>
+  </footer>
+
+  <!-- Projects Logic Script -->
+  <script src="js/projects.js"></script>
+</body>
+</html>

@@ -1,0 +1,359 @@
+/* ==========================================================================
+   TECHNOVA HR PORTAL STYLESHEET (style.css)
+   Sanket Ambre - Web Programming Technologies
+   ========================================================================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+:root {
+  --hr-primary: #1e3a8a;      /* Corporate Deep Blue */
+  --hr-primary-light: #3b82f6;
+  --hr-secondary: #0ea5e9;
+  --hr-bg-grad: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0284c7 100%);
+  --hr-surface: #ffffff;
+  --hr-text: #1e293b;
+  --hr-muted: #64748b;
+  --hr-border: #cbd5e1;
+  --hr-danger: #dc2626;
+  --hr-success: #16a34a;
+}
+
+body {
+  background: #f1f5f9;
+  color: var(--hr-text);
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* Navigation Bar */
+.hr-navbar {
+  background: #0f172a;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 36px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.hr-brand {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hr-brand span {
+  color: var(--hr-secondary);
+}
+
+.hr-nav-links {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+.hr-nav-links a {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 8px 14px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.hr-nav-links a:hover,
+.hr-nav-links a.active {
+  background: var(--hr-primary-light);
+  color: #ffffff;
+}
+
+/* General Layout Containers */
+.container {
+  max-width: 1100px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+/* Form & Content Cards */
+.hr-card {
+  background: var(--hr-surface);
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--hr-border);
+  margin-bottom: 25px;
+}
+
+/* Headings */
+h1 {
+  color: var(--hr-primary);
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+h2 {
+  color: var(--hr-primary);
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+p.subtitle {
+  color: var(--hr-muted);
+  margin-bottom: 20px;
+}
+
+/* Login Specific Card (Assignment 1 Requirement) */
+.login-page-body {
+  background: var(--hr-bg-grad);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.login-card {
+  width: 420px;
+  background: #ffffff;
+  border-radius: 14px;
+  text-align: center;
+  margin: auto;
+  padding: 40px 32px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.25), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Inputs styled with class selector: only bottom border, no outline */
+.login-input {
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid var(--hr-border);
+  outline: none;
+  padding: 12px 6px;
+  font-size: 1rem;
+  margin-top: 8px;
+  transition: border-color 0.25s ease;
+  background: transparent;
+}
+
+.login-input:focus {
+  border-bottom-color: var(--hr-primary-light);
+}
+
+/* Login Button styled with ID selector: hover transition */
+#login-btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 24px;
+  background: linear-gradient(135deg, var(--hr-primary), var(--hr-secondary));
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#login-btn:hover {
+  background: linear-gradient(135deg, #172554, #0284c7);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(2, 132, 199, 0.3);
+}
+
+.signup-link-line {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: var(--hr-muted);
+}
+
+.signup-link-line a {
+  color: var(--hr-primary-light);
+  font-weight: 600;
+  text-decoration: none; /* No underline as specified */
+}
+
+.signup-link-line a:hover {
+  text-decoration: underline;
+}
+
+/* Password Toggle Container */
+.password-field-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.toggle-pwd-btn {
+  position: absolute;
+  right: 0;
+  bottom: 10px;
+  background: none;
+  border: 1px solid var(--hr-border);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  color: var(--hr-muted);
+}
+
+.toggle-pwd-btn:hover {
+  background: #f1f5f9;
+  color: var(--hr-text);
+}
+
+/* Standard Form Fields */
+.form-field {
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.form-field label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+  color: var(--hr-text);
+}
+
+.std-input, .std-select, .std-textarea {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--hr-border);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.std-input:focus, .std-select:focus, .std-textarea:focus {
+  border-color: var(--hr-primary-light);
+}
+
+/* Error messages in red */
+.error-span {
+  color: var(--hr-danger);
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: block;
+  margin-top: 4px;
+  text-align: left;
+}
+
+/* Table Styling */
+.table-responsive {
+  overflow-x: auto;
+  margin-top: 15px;
+}
+
+table.hr-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table.hr-table th, table.hr-table td {
+  border: 1px solid var(--hr-border);
+  padding: 12px 14px;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+table.hr-table th {
+  background: #f8fafc;
+  font-weight: 700;
+  color: var(--hr-primary);
+}
+
+table.hr-table tr:hover {
+  background-color: #f1f5f9;
+}
+
+.btn-remove {
+  background: #fee2e2;
+  color: var(--hr-danger);
+  border: 1px solid #fca5a5;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-remove:hover {
+  background: #ef4444;
+  color: #ffffff;
+}
+
+/* Buttons */
+.btn-hr-primary {
+  background: var(--hr-primary);
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-hr-primary:hover {
+  background: #172554;
+}
+
+.btn-hr-secondary {
+  background: #f1f5f9;
+  color: var(--hr-text);
+  border: 1px solid var(--hr-border);
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-hr-secondary:hover {
+  background: #e2e8f0;
+}
+
+/* Onboarding Step Sequence Display */
+.step-item {
+  padding: 14px 18px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border-left: 4px solid var(--hr-primary-light);
+  background: #f8fafc;
+  font-weight: 600;
+}
+
+.step-item.success {
+  border-left-color: var(--hr-success);
+  background: #f0fdf4;
+  color: #166534;
+}
+
+.step-item.active {
+  border-left-color: #f59e0b;
+  background: #fffbeb;
+  color: #b45309;
+}
+
+/* Fieldset and legend */
+fieldset {
+  border: 1px solid var(--hr-border);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+legend {
+  font-weight: 700;
+  color: var(--hr-primary);
+  padding: 0 10px;
+}

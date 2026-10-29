@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TechNova Employee Directory - Search, filter, add and manage organizational team members.">
+  <title>Employee Directory | TechNova Solutions</title>
+  
+  <!-- External Shared HR Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="hr-navbar">
+    <a href="login.html" class="hr-brand">
+      &#128188; TechNova <span>HRMS</span>
+    </a>
+    <ul class="hr-nav-links">
+      <li><a href="login.html">Login</a></li>
+      <li><a href="directory.html" class="active">Employee Directory</a></li>
+      <li><a href="onboarding.html">New Joiner Onboarding</a></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+    
+    <!-- Top Action Header -->
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:15px; margin-bottom: 25px;">
+      <div>
+        <h1>Employee Directory</h1>
+        <p class="subtitle">Live staff records fetched asynchronously from enterprise REST services.</p>
+      </div>
+
+      <div>
+        <button id="load-emp-btn" class="btn-hr-primary" onclick="loadEmployees()">
+          &#128259; Load Employees
+        </button>
+      </div>
+    </div>
+
+    <!-- Error message display area -->
+    <div id="directory-error-message" style="margin-bottom: 15px;"></div>
+
+    <!-- Search with Choice & Computed Key Section -->
+    <div class="hr-card" style="padding: 18px 24px;">
+      <div style="display:flex; gap:15px; align-items:center; flex-wrap:wrap;">
+        <label for="search-field-select" style="font-weight:600;">Search By:</label>
+        <select id="search-field-select" class="std-select" style="width:160px;" onchange="handleSearch()">
+          <option value="name">Name</option>
+          <option value="email">Email</option>
+          <option value="username">Username</option>
+        </select>
+
+        <input 
+          type="text" 
+          id="search-input" 
+          class="std-input" 
+          style="flex: 1; min-width: 200px;" 
+          placeholder="Search records..." 
+          onkeyup="handleSearch()">
+      </div>
+    </div>
+
+    <!-- Quick Add Employee Form (Shorthand Properties & Spread Operator Demo) -->
+    <div class="hr-card">
+      <h2>Register New Employee</h2>
+      <form onsubmit="return handleAddEmployee(event)" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:15px; align-items:end;">
+        <div>
+          <label for="add-name" style="font-weight:600; font-size:0.9rem;">Full Name *</label>
+          <input type="text" id="add-name" class="std-input" placeholder="e.g. John Doe" required>
+        </div>
+
+        <div>
+          <label for="add-department" style="font-weight:600; font-size:0.9rem;">Department *</label>
+          <select id="add-department" class="std-select" required>
+            <option value="">-- Choose Dept --</option>
+            <option value="Engineering">Engineering</option>
+            <option value="Product">Product</option>
+            <option value="Quality Assurance">Quality Assurance</option>
+            <option value="Human Resources">Human Resources</option>
+            <option value="DevOps">DevOps</option>
+            <option value="Finance">Finance</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="add-email" style="font-weight:600; font-size:0.9rem;">Email (Optional)</label>
+          <input type="email" id="add-email" class="std-input" placeholder="name@technova.com">
+        </div>
+
+        <div>
+          <label for="add-phone" style="font-weight:600; font-size:0.9rem;">Phone (Optional)</label>
+          <input type="text" id="add-phone" class="std-input" placeholder="1-555-0100">
+        </div>
+
+        <div>
+          <button type="submit" class="btn-hr-primary" style="width:100%;">+ Add Employee</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Employee Table Section -->
+    <div class="hr-card">
+      <h2>Active Staff Records</h2>
+      <div class="table-responsive">
+        <table class="hr-table" border="1" cellpadding="8" cellspacing="0">
+          <thead>
+            <tr>
+              <th style="width: 8%;">Emp ID</th>
+              <th style="width: 22%;">Name</th>
+              <th style="width: 18%;">Department</th>
+              <th style="width: 16%;">Username</th>
+              <th style="width: 22%;">Email</th>
+              <th style="width: 14%;">Phone</th>
+              <th style="width: 10%;">Action</th>
+            </tr>
+          </thead>
+          <!-- Populated dynamically with createElement and destructuring -->
+          <tbody id="directory-tbody">
+            <!-- Rows injected by directory.js -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Total employees line updated via template literal -->
+      <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid var(--hr-border); display:flex; justify-content:space-between; align-items:center;">
+        <p id="total-employee-counter" style="font-size: 1.15rem; font-weight: 700; color: var(--hr-primary);">
+          Total employees: 0
+        </p>
+        <span style="font-size: 0.85rem; color: var(--hr-muted);">Auto-calculated via ES6 Template Literal</span>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Script logic -->
+  <script src="js/directory.js"></script>
+</body>
+</html>
