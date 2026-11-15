@@ -1,0 +1,31 @@
+<html>
+<head>
+    <title>Multiplication and Division</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="calculator">
+        <label for="num1">1st Number:</label>
+        <input type="number" id="num1" required>
+        <br>
+
+        <label for="num2">2nd Number:</label>
+        <input type="number" id="num2" required>
+        <br>
+
+        <button type="button" onclick="calculate('multiply')">
+            Multiply
+        </button>
+
+        <button type="button" onclick="calculate('divide')">
+            Divide
+        </button>
+
+        <p>The Result is: <span id="result"></span></p>
+        <p id="error"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

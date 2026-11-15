@@ -1,0 +1,41 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f7fb;
+    padding: 40px;
+}
+
+.calculator {
+    max-width: 400px;
+    margin: 30px auto;
+    padding: 25px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+label {
+    display: inline-block;
+    width: 100px;
+    margin-bottom: 12px;
+}
+
+input {
+    width: 180px;
+    padding: 5px;
+    margin-bottom: 12px;
+}
+
+button {
+    padding: 7px 14px;
+    margin: 5px 4px 5px 0;
+    cursor: pointer;
+}
+
+#error {
+    color: red;
+}
+
+#result {
+    font-weight: bold;
+}
